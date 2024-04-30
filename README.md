@@ -7,13 +7,13 @@
 
 ## Team Members
 
-<< List team member names >>
+Tiffany Lin
 
 ***
 
 ## Project Description
 
-<< Give an overview of your project >>
+Chrome dinosaur game
 
 ***    
 
@@ -43,8 +43,32 @@
 
 ## ATP
 
-| Step                 |Procedure             |Expected Results                   |
-|----------------------|:--------------------:|----------------------------------:|
-|  1                   | Run Counter Program  |GUI window appears with count = 0  |
-|  2                   | click count button   | display changes to count = 1      |
-etc...
+### Test Case 1: Jump
+1. Start game.
+2. Press space or up arrow.
+3. Verify that the dinosaur jumps.
+**Expected outcome**: The dinosaur should jump when the spacebar or up arrow is pressed.
+
+### Test Case 2: Duck
+1. Start game.
+2. Press down arrow to duck.
+3. Verify that the dinosauce ducks.
+**Expected outcome**: The dinosauce should duck when the down arrow is pressed.
+
+### Test Case 3: Game Over
+1. Start game.
+2. Play until the dinosaur hits an obstacle.
+3. Verify that the game will display a "Game Over" message.
+**Expected outcome**: The game should display a "Game Over" message when the dinosaur hits an obstacle.
+
+### Test Case 4: Unused Keystrokes
+1. Start game.
+2. Enter unused keystrokes during gameplay.
+3. Verify that the game will not crash.
+**Expected outcome**: The game will not crash and would ignore the inputs.
+
+### Test Case 5: Quit Game
+1. Start game.
+2. Press q to quit the game.
+3. Verify the game window closes.
+**Expected outcome**: The game window will close when q is pressed.
