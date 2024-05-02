@@ -31,11 +31,11 @@ Chrome dinosaur game
 
 ### Features
 
-1. << Feature 1 >>
-2. << Feature 2 >>
-3. << Feature 3 >>
-4. << Feature 4 >>
-5. << Feature 5 >>
+1. Start menu
+2. Movable character
+3. Obstacle collision
+4. Scrolling background
+5. Game over screen
 
 ### Classes
 
