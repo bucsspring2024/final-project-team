@@ -44,6 +44,10 @@ class Dinosaur:
     jump_vel = 10
 
     def __init__(self):
+        """
+        initializes the images of the dino
+        initializes the dino position and starting image
+        """
         self.duck_img = duck
         self.run_img = run
         self.jump_img = jump
@@ -60,6 +64,10 @@ class Dinosaur:
         self.dino_rect.y = self.y_pos
 
     def update(self, user_input):
+        """
+        checks the current state of the dino
+        checks the user input to control the dino
+        """
         if self.dino_duck:
             self.duck()
         if self.dino_run:
@@ -84,6 +92,10 @@ class Dinosaur:
             self.dino_jump = False
 
     def duck(self):
+        """
+        checks if the dino is ducking and sets the image
+        sets the position of the ducking dino
+        """
         self.image = self.duck_img[self.step_index // 5]
         self.dino_rect = self.image.get_rect()
         self.dino_rect.x = self.x_pos
@@ -91,6 +103,10 @@ class Dinosaur:
         self.step_index += 1
 
     def run(self):
+        """
+        checks if the dino is running and sets the image
+        sets the position of the running dino
+        """
         self.image = self.run_img[self.step_index // 5]
         self.dino_rect = self.image.get_rect()
         self.dino_rect.x = self.x_pos
@@ -98,6 +114,10 @@ class Dinosaur:
         self.step_index += 1
 
     def jump(self):
+        """
+        checks if the dino is jumping and sets the image
+        sets the position of the jumping dino
+        """
         self.image = self.jump_img
         if self.dino_jump:
             self.dino_rect.y -= self.jump_vel * 4
@@ -107,51 +127,81 @@ class Dinosaur:
             self.jump_vel = self.jump_vel
 
     def draw(self, screen):
+        """
+        draws the dino according to the coordinates
+        """
         screen.blit(self.image, (self.dino_rect.x, self.dino_rect.y))
 
 
 class Cloud:
     def __init__(self):
+        """
+        initializes images of the clouds
+        initializes the cloud positions
+        """
         self.x = width + random.randint(500, 1000)
         self.y = random.randint(50, 200)
         self.image = cloud
         self.width = self.image.get_width()
 
     def update(self):
+        """
+        updates the position of the clouds
+        """
         self.x -= game_speed
         if self.x < -self.width:
             self.x = width + random.randint(2500, 3000)
             self.y = random.randint(50, 100)
 
     def draw(self, screen):
+        """
+        draws the clouds according to the coordinates
+        """
         screen.blit(self.image, (self.x, self.y))
 
 
 class Obstacle:
     def __init__(self, image, type):
+        """
+        initializes the obstacles with and image and type
+        sets inital position to the right of the screen
+        """
         self.image = image
         self.type = type
         self.rect = self.image[self.type].get_rect()
         self.rect.x = width
 
     def update(self):
+        """
+        updates the position of the obstacle
+        removes the obstacle if it moves off the screen from the left
+        """
         self.rect.x -= game_speed
         if self.rect.x < -self.rect.width:
             obstacles.pop()
 
     def draw(self, screen):
+        """
+        draws the clouds according to the coordinates
+        """
         screen.blit(self.image[self.type], self.rect)
 
 
 class SmallCactus(Obstacle):
     def __init__(self, image):
+        """
+        initializes images and initial position of the small cacti
+        """
         self.type = random.randint(0, 2)
         super().__init__(image, self.type)
-        self.rect.y = 325
+        self.rect.y = 300
 
 
 class LargeCactus(Obstacle):
     def __init__(self, image):
+        """
+        initializes images and initial position of the large cacti
+        """
         self.type = random.randint(0, 2)
         super().__init__(image, self.type)
         self.rect.y = 300
@@ -159,15 +209,21 @@ class LargeCactus(Obstacle):
 
 class Bird(Obstacle):
     def __init__(self, image):
+        """
+        initializes images and initial position of the birds
+        """
         self.type = 0
         super().__init__(image, self.type)
         self.rect.y = 300
         self.index = 0
 
-    def draw(self, SCREEN):
+    def draw(self, screen):
+        """
+        manages the animations of the obstacles
+        """
         if self.index >= 9:
             self.index = 0
-        SCREEN.blit(self.image[self.index//5], self.rect)
+        screen.blit(self.image[self.index//5], self.rect)
         self.index += 1
 
 
@@ -186,6 +242,9 @@ def main():
     death_count = 0
 
     def score():
+        """
+        records the score
+        """
         global points, game_speed
         points += 1
         if points % 100 == 0:
@@ -197,6 +256,9 @@ def main():
         screen.blit(text, textRect)
 
     def draw_background():
+        """
+        draws background
+        """
         global x_pos_bg, y_pos_bg
         image_width = background.get_width()
         screen.blit(background, (x_pos_bg, y_pos_bg))
@@ -207,6 +269,9 @@ def main():
         x_pos_bg -= game_speed
     
     def save_score():
+        """
+        saves score to a file
+        """
         with open("results.txt", "a") as file:
             file.write(f"Death Count: {death_count}, Score: {points}\n")
     
@@ -249,6 +314,9 @@ def main():
 
 
 def menu(death_count, run_images):
+    """
+    initializes the game menu, to start or restart the game
+    """
     global points
     run = True
     while run:
