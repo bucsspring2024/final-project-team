@@ -112,8 +112,8 @@ class Dinosaur:
 
 class Cloud:
     def __init__(self):
-        self.x = width + random.randint(800, 1000)
-        self.y = random.randint(50, 100)
+        self.x = width + random.randint(500, 1000)
+        self.y = random.randint(50, 200)
         self.image = cloud
         self.width = self.image.get_width()
 
@@ -139,7 +139,7 @@ class Obstacle:
         if self.rect.x < -self.rect.width:
             obstacles.pop()
 
-    def draw(self, SCREEN):
+    def draw(self, screen):
         screen.blit(self.image[self.type], self.rect)
 
 
@@ -207,7 +207,7 @@ def main():
         x_pos_bg -= game_speed
     
     def save_score():
-        with open("game_results.txt", "a") as file:
+        with open("results.txt", "a") as file:
             file.write(f"Death Count: {death_count}, Score: {points}\n")
     
     while run:
